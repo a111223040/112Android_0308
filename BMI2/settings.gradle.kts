@@ -15,5 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "BMI"
 include(":app")
-include(":app")
  
