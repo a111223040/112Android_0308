@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,15 +21,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         cities = getResources().getStringArray(R.array.cities);
-        ArrayAdapter<String> a = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, cities);
         lv = (ListView) findViewById(R.id.listview);
-        lv.setAdapter(a);
-        lv.setOnClickListener(this);
-    }
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-        TextView output = (TextView) findViewById(R.id.lblOutput);
-        output.setText("你是住在" + cities[position]);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView output = (TextView) findViewById(R.id.lblOutput);
+                output.setText("你是住在" + cities[position]);
+                Toast.makeText(MainActivity.this, "你是住在:" + cities[position],
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
